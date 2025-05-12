@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'profile.dart';
 import 'workouts.dart'; // Import the new Workouts screen
+import 'goals.dart'; // Import the Goals screen
 
 class ClientPanel extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _ClientPanelState extends State<ClientPanel> {
   final List<Widget> _pages = [
     HomeScreen(),
     WorkoutsScreen(), // Add Workouts screen
+    GoalsScreen(), // Add Goals screen
     ProfileScreen(),
   ];
 
@@ -35,6 +37,10 @@ class _ClientPanelState extends State<ClientPanel> {
           BottomNavigationBarItem(
             icon: Icon(Icons.fitness_center),
             label: "Treinos",
+          ), // New tab
+          BottomNavigationBarItem(
+            icon: Icon(Icons.flag),
+            label: "Metas",
           ), // New tab
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Perfil"),
         ],
