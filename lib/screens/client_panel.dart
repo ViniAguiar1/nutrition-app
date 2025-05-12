@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'profile.dart';
+import 'workouts.dart'; // Import the new Workouts screen
 
 class ClientPanel extends StatefulWidget {
   @override
@@ -10,7 +11,11 @@ class ClientPanel extends StatefulWidget {
 class _ClientPanelState extends State<ClientPanel> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [HomeScreen(), ProfileScreen()];
+  final List<Widget> _pages = [
+    HomeScreen(),
+    WorkoutsScreen(), // Add Workouts screen
+    ProfileScreen(),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -27,6 +32,10 @@ class _ClientPanelState extends State<ClientPanel> {
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.fitness_center),
+            label: "Treinos",
+          ), // New tab
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Perfil"),
         ],
         selectedItemColor: Colors.brown.shade300,
