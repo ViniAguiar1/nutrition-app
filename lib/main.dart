@@ -13,6 +13,7 @@ import 'screens/change_password.dart';
 import 'screens/notifications.dart';
 import 'screens/help.dart';
 import 'screens/about.dart';
+import 'screens/workouts.dart'; // Ensure this import is present
 
 void main() {
   runApp(MyApp());
@@ -52,6 +53,8 @@ class MyApp extends StatelessWidget {
         '/notifications': (context) => NotificationsScreen(), // New route
         '/help': (context) => HelpScreen(), // New route
         '/about': (context) => AboutScreen(), // New route
+        '/workouts':
+            (context) => WorkoutsScreen(), // Ensure this route is correct
       },
     );
   }

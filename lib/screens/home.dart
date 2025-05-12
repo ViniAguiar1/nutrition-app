@@ -174,13 +174,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   _quickAccessIcon("Chat", Icons.chat_outlined, () {
                     Navigator.pushNamed(context, '/chat');
                   }),
-                  _quickAccessIcon(
-                    "Prescrições",
-                    Icons.medical_services_outlined,
-                    () {
-                      Navigator.pushNamed(context, '/prescricoes');
-                    },
-                  ),
+                  _quickAccessIcon("Prescrições", Icons.fitness_center, () {
+                    Navigator.pushNamed(
+                      context,
+                      '/prescricoes',
+                    ); // Navigate to Prescrições
+                  }),
                 ],
               ),
             ),
