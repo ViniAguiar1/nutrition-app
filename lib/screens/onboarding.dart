@@ -72,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF402819), // Primary color
+                              color: Color(0xFF125c52), // Updated primary color
                             ),
                           ),
                           SizedBox(height: 16),
@@ -81,7 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.black87,
+                              color: Color(0xFF676664), // Updated neutral color
                             ),
                           ),
                         ],
@@ -103,24 +103,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       shape: BoxShape.circle,
                       color:
                           _currentPage == index
-                              ? Color(0xFF402819) // Primary color
-                              : Color(0xFFdfccb2), // Secondary color
+                              ? Color(0xFF125c52) // Updated primary color
+                              : Color(0xFF24b5a1), // Updated secondary color
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal:
+                      32.0, // Increased horizontal padding for centering
+                  vertical: 40.0, // Further increased vertical padding
+                ),
                 child: ElevatedButton(
                   onPressed: _nextPage,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF402819), // Primary color
+                    backgroundColor: Color(0xFF125c52), // Updated primary color
                     padding: EdgeInsets.symmetric(
-                      vertical: 16.0,
-                      horizontal: 32.0,
+                      vertical: 16.0, // Further increased button height
+                      horizontal: 90.0, // Increased button width for better UI
                     ),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(
+                        20.0, // More rounded corners for improved UX
+                      ),
                     ),
                   ),
                   child: Text(
@@ -128,8 +134,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ? "Ir para Login"
                         : "Próximo",
                     style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xFFdfccb2), // Secondary color
+                      fontSize:
+                          18, // Slightly larger font for better readability
+                      color: Color(0xFFdbdad5), // Updated neutral color
                     ),
                   ),
                 ),
@@ -149,7 +156,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Text(
                 "Pular",
                 style: TextStyle(
-                  color: Color(0xFF402819), // Primary color
+                  color: Color(0xFF125c52), // Updated primary color
                   fontSize: 16,
                 ),
               ),

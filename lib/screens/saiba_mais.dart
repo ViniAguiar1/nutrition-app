@@ -25,6 +25,14 @@ class _SaibaMaisScreenState extends State<SaibaMaisScreen> {
     "Com dedicação e suporte, você alcançará resultados reais e sustentáveis, transformando sua vida para melhor.",
   ];
 
+  final List<String> _images = [
+    "https://via.placeholder.com/300x200/FFB6C1/000000?text=Matheus+Coelho",
+    "https://via.placeholder.com/300x200/FFD700/000000?text=Clínica+Davirakã",
+    "https://via.placeholder.com/300x200/87CEFA/000000?text=Treinamento",
+    "https://via.placeholder.com/300x200/FF6347/000000?text=Acompanhamento",
+    "https://via.placeholder.com/300x200/90EE90/000000?text=Resultados",
+  ];
+
   void _nextPage() {
     if (_currentPage < _titles.length - 1) {
       _pageController.nextPage(
@@ -39,19 +47,28 @@ class _SaibaMaisScreenState extends State<SaibaMaisScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, // Clean white background
       appBar: AppBar(
-        backgroundColor: Color(0xFF402819), // Primary color
-        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
-        title: Text("Saiba Mais"),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          "Saiba Mais",
+          style: TextStyle(
+            color: Color(0xFF125c52), // Primary color
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Color(0xFF125c52)), // Primary color
       ),
       body: Column(
         children: [
           LinearProgressIndicator(
             value: (_currentPage + 1) / _titles.length,
-            backgroundColor: Color(0xFFdfccb2), // Secondary color
+            backgroundColor: Color(0xFFdbdad5), // Neutral color
             valueColor: AlwaysStoppedAnimation<Color>(
-              Color(0xFF402819),
-            ), // Primary color
+              Color(0xFF125c52), // Primary color
+            ),
           ),
           Expanded(
             child: PageView.builder(
@@ -68,20 +85,32 @@ class _SaibaMaisScreenState extends State<SaibaMaisScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12.0),
+                        child: Image.network(
+                          _images[index],
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(height: 24),
                       Text(
                         _titles[index],
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 28,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF402819), // Primary color
+                          color: Color(0xFF125c52), // Primary color
                         ),
                       ),
                       SizedBox(height: 16),
                       Text(
                         _descriptions[index],
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16, color: Colors.black87),
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFF676664), // Neutral color
+                        ),
                       ),
                     ],
                   ),
@@ -102,8 +131,8 @@ class _SaibaMaisScreenState extends State<SaibaMaisScreen> {
                   shape: BoxShape.circle,
                   color:
                       _currentPage == index
-                          ? Color(0xFF402819) // Primary color
-                          : Color(0xFFdfccb2), // Secondary color
+                          ? Color(0xFF125c52) // Primary color
+                          : Color(0xFF24b5a1), // Secondary color
                 ),
               ),
             ),
@@ -113,10 +142,10 @@ class _SaibaMaisScreenState extends State<SaibaMaisScreen> {
             child: ElevatedButton(
               onPressed: _nextPage,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF402819), // Primary color
+                backgroundColor: Color(0xFF125c52), // Primary color
                 padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(12.0),
                 ),
               ),
               child: Text(
@@ -125,7 +154,7 @@ class _SaibaMaisScreenState extends State<SaibaMaisScreen> {
                     : "Próximo",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color(0xFFdfccb2), // Secondary color
+                  color: Colors.white, // White text for contrast
                 ),
               ),
             ),

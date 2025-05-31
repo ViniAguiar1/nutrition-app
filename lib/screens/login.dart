@@ -20,12 +20,12 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 24),
               Text(
-                "Login",
+                "Seja bem-vindo(a) de volta!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF402819), // Primary color
+                  color: Color(0xFF125c52), // Updated primary color
                 ),
               ),
               SizedBox(height: 16),
@@ -33,12 +33,12 @@ class LoginScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: "E-mail",
                   labelStyle: TextStyle(
-                    color: Color(0xFF402819), // Primary color
+                    color: Color(0xFF125c52), // Updated primary color
                   ),
                   filled: true,
                   fillColor: Color(
-                    0xFFdfccb2,
-                  ).withOpacity(0.2), // Light secondary color
+                    0xFFdbdad5,
+                  ).withOpacity(0.2), // Updated neutral color
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
                     borderSide: BorderSide.none,
@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
                     borderSide: BorderSide(
-                      color: Color(0xFF402819), // Primary color
+                      color: Color(0xFF125c52), // Updated primary color
                     ),
                   ),
                   contentPadding: EdgeInsets.symmetric(
@@ -63,12 +63,12 @@ class LoginScreen extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: "Senha",
                       labelStyle: TextStyle(
-                        color: Color(0xFF402819), // Primary color
+                        color: Color(0xFF125c52), // Updated primary color
                       ),
                       filled: true,
                       fillColor: Color(
-                        0xFFdfccb2,
-                      ).withOpacity(0.2), // Light secondary color
+                        0xFFdbdad5,
+                      ).withOpacity(0.2), // Updated neutral color
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
                         borderSide: BorderSide.none,
@@ -76,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
                         borderSide: BorderSide(
-                          color: Color(0xFF402819), // Primary color
+                          color: Color(0xFF125c52), // Updated primary color
                         ),
                       ),
                       contentPadding: EdgeInsets.symmetric(
@@ -88,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                           _obscurePassword
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          color: Color(0xFF402819), // Primary color
+                          color: Color(0xFF125c52), // Updated primary color
                         ),
                         onPressed: () {
                           setState(() {
@@ -109,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                   ); // Navigate to ClientPanel
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF402819), // Primary color
+                  backgroundColor: Color(0xFF125c52), // Updated primary color
                   padding: EdgeInsets.symmetric(vertical: 16.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
@@ -119,7 +119,7 @@ class LoginScreen extends StatelessWidget {
                   "Entrar",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFFdfccb2), // Secondary color
+                    color: Colors.white, // Changed to white color
                   ),
                 ),
               ),
@@ -129,7 +129,9 @@ class LoginScreen extends StatelessWidget {
                 },
                 child: Text(
                   "Esqueci minha senha",
-                  style: TextStyle(color: Color(0xFF402819)), // Primary color
+                  style: TextStyle(
+                    color: Color(0xFF125c52),
+                  ), // Updated primary color
                 ),
               ),
               TextButton(
@@ -141,7 +143,9 @@ class LoginScreen extends StatelessWidget {
                 },
                 child: Text(
                   "Não é paciente? Saiba Mais",
-                  style: TextStyle(color: Color(0xFF402819)), // Primary color
+                  style: TextStyle(
+                    color: Color(0xFF125c52),
+                  ), // Updated primary color
                 ),
               ),
             ],
