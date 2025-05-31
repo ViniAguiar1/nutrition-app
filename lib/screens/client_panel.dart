@@ -32,7 +32,15 @@ class _ClientPanelState extends State<ClientPanel> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
-        items: const [
+        type: BottomNavigationBarType.fixed, // Ensure all items are visible
+        backgroundColor: Colors.white, // Clean white background
+        selectedItemColor: Color(0xFF125c52), // Updated primary color
+        unselectedItemColor: Color(0xFF676664), // Updated neutral color
+        selectedLabelStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+        ), // Highlight selected label
+        unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+        items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
             icon: Icon(Icons.fitness_center),
@@ -44,8 +52,6 @@ class _ClientPanelState extends State<ClientPanel> {
           ), // New tab
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Perfil"),
         ],
-        selectedItemColor: Colors.brown.shade300,
-        unselectedItemColor: Colors.grey,
       ),
     );
   }

@@ -15,6 +15,7 @@ import 'screens/help.dart';
 import 'screens/about.dart';
 import 'screens/workouts.dart'; // Ensure this import is present
 import 'screens/goals.dart'; // Import the Goals screen
+import 'screens/appointment_details.dart'; // Import the AppointmentDetails screen
 
 void main() {
   runApp(MyApp());
@@ -57,6 +58,9 @@ class MyApp extends StatelessWidget {
         '/workouts':
             (context) => WorkoutsScreen(), // Ensure this route is correct
         '/goals': (context) => GoalsScreen(), // Register Goals screen
+        '/appointment-details':
+            (context) =>
+                AppointmentDetailsScreen(), // Register AppointmentDetails screen
       },
     );
   }

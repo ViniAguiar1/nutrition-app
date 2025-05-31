@@ -23,14 +23,19 @@ class PrescricoesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, // Clean white background
       appBar: AppBar(
-        title: Text("Prescrições"),
-        backgroundColor: Color(0xFF402819), // Primary color
-        titleTextStyle: TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          "Prescrições",
+          style: TextStyle(
+            color: Color(0xFF125c52), // Primary color
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Color(0xFF125c52)), // Primary color
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -40,23 +45,11 @@ class PrescricoesScreen extends StatelessWidget {
             final prescricao = prescricoes[index];
             return Card(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
+                borderRadius: BorderRadius.circular(16.0),
               ),
               elevation: 4,
               margin: const EdgeInsets.symmetric(vertical: 8.0),
-              child: ListTile(
-                title: Text(
-                  prescricao["title"]!,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF402819), // Primary color
-                  ),
-                ),
-                subtitle: Text("Data: ${prescricao["date"]}"),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Color(0xFF402819),
-                ),
+              child: InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -70,6 +63,52 @@ class PrescricoesScreen extends StatelessWidget {
                     ),
                   );
                 },
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 30,
+                        backgroundColor: Color(
+                          0xFFdbdad5,
+                        ).withOpacity(0.5), // Neutral color
+                        child: Icon(
+                          Icons.description,
+                          color: Color(0xFF125c52), // Primary color
+                          size: 30,
+                        ),
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              prescricao["title"]!,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF125c52), // Primary color
+                              ),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              "Data: ${prescricao["date"]}",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF676664), // Neutral color
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Color(0xFF125c52), // Primary color
+                      ),
+                    ],
+                  ),
+                ),
               ),
             );
           },

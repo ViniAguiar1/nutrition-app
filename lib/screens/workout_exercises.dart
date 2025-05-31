@@ -75,134 +75,183 @@ class _WorkoutExercisesScreenState extends State<WorkoutExercisesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, // Clean white background
       appBar: AppBar(
-        backgroundColor: Color(0xFF402819), // Primary color
-        title: Text(widget.workoutTitle, style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          widget.workoutTitle,
+          style: TextStyle(
+            color: Color(0xFF125c52), // Primary color
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
+        iconTheme: IconThemeData(color: Color(0xFF125c52)), // Primary color
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
-          itemCount: exercises.length,
+          itemCount:
+              exercises.length +
+              (exercises.length ~/ 2), // Add space for banners
           itemBuilder: (context, index) {
-            final exercise = exercises[index];
-            final List<Map<String, dynamic>> series = [
-              {"series": 1, "weight": 0, "reps": 0},
-              {"series": 2, "weight": 0, "reps": 0},
-              {"series": 3, "weight": 0, "reps": 0},
-            ];
+            if (index % 3 == 2) {
+              // Insert a promotional banner after every 2 exercises
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: Image.network(
+                    "https://jpimg.com.br/uploads/2017/04/2526327569-logotipo-mancha-verde-1024x819.jpg",
+                    height: 100,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              );
+            } else {
+              final exerciseIndex = index - (index ~/ 3);
+              final exercise = exercises[exerciseIndex];
+              final List<Map<String, dynamic>> series = [
+                {"series": 1, "weight": 0, "reps": 0},
+                {"series": 2, "weight": 0, "reps": 0},
+                {"series": 3, "weight": 0, "reps": 0},
+              ];
 
-            return Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              elevation: 4,
-              margin: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Image.network(
-                          exercise["image"]!,
-                          width: 50,
-                          height: 50,
-                          fit: BoxFit.cover,
-                        ),
-                        SizedBox(width: 16),
-                        Expanded(
-                          child: Text(
-                            exercise["name"]!,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Color(0xFF402819), // Primary color
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                elevation: 2,
+                margin: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              exercise["image"]!,
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.play_circle_fill,
-                            color: Color(0xFF402819),
+                          SizedBox(width: 16),
+                          Expanded(
+                            child: Text(
+                              exercise["name"]!,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: Color(0xFF125c52), // Primary color
+                              ),
+                            ),
                           ),
-                          onPressed: () => _openVideo(exercise["video"]!),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16),
-                    Column(
-                      children:
-                          series.map((entry) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Série ${entry['series']}"),
-                                SizedBox(
-                                  width: 80,
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                      labelText: "Peso (kg)",
-                                      labelStyle: TextStyle(fontSize: 12),
+                          IconButton(
+                            icon: Icon(
+                              Icons.play_circle_fill,
+                              color: Color(0xFF24b5a1), // Secondary color
+                            ),
+                            onPressed: () => _openVideo(exercise["video"]!),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 16),
+                      Column(
+                        children:
+                            series.map((entry) {
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Série ${entry['series']}",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF676664), // Neutral color
                                     ),
-                                    keyboardType: TextInputType.number,
-                                    onChanged: (value) {
-                                      entry['weight'] =
-                                          int.tryParse(value) ?? 0;
-                                    },
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 80,
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                      labelText: "Reps",
-                                      labelStyle: TextStyle(fontSize: 12),
+                                  SizedBox(
+                                    width: 80,
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                        labelText: "Peso (kg)",
+                                        labelStyle: TextStyle(fontSize: 12),
+                                      ),
+                                      keyboardType: TextInputType.number,
+                                      onChanged: (value) {
+                                        entry['weight'] =
+                                            int.tryParse(value) ?? 0;
+                                      },
                                     ),
-                                    keyboardType: TextInputType.number,
-                                    onChanged: (value) {
-                                      entry['reps'] = int.tryParse(value) ?? 0;
-                                    },
                                   ),
-                                ),
-                              ],
-                            );
-                          }).toList(),
-                    ),
-                    SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed:
-                              () => _saveProgress(exercise["name"]!, series),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF402819), // Primary color
+                                  SizedBox(
+                                    width: 80,
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                        labelText: "Reps",
+                                        labelStyle: TextStyle(fontSize: 12),
+                                      ),
+                                      keyboardType: TextInputType.number,
+                                      onChanged: (value) {
+                                        entry['reps'] =
+                                            int.tryParse(value) ?? 0;
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }).toList(),
+                      ),
+                      SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton(
+                            onPressed:
+                                () => _saveProgress(exercise["name"]!, series),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(
+                                0xFF125c52,
+                              ), // Primary color
+                              padding: EdgeInsets.symmetric(
+                                vertical: 12.0,
+                                horizontal: 16.0,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                            ),
+                            child: Text(
+                              "Salvar",
+                              style: TextStyle(
+                                color: Colors.white, // White text for contrast
+                              ),
+                            ),
                           ),
-                          child: Text(
-                            "Salvar",
-                            style: TextStyle(
-                              color: Color(0xFFdfccb2),
-                            ), // Secondary color
+                          TextButton(
+                            onPressed:
+                                () => _navigateToHistory(exercise["name"]!),
+                            child: Text(
+                              "Histórico",
+                              style: TextStyle(
+                                color: Color(0xFF125c52), // Primary color
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
-                        TextButton(
-                          onPressed:
-                              () => _navigateToHistory(exercise["name"]!),
-                          child: Text(
-                            "Histórico",
-                            style: TextStyle(
-                              color: Color(0xFF402819),
-                            ), // Primary color
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
+              );
+            }
           },
         ),
       ),

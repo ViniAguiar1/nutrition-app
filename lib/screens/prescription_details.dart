@@ -14,16 +14,21 @@ class PrescriptionDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, // Clean white background
       appBar: AppBar(
-        title: Text(title),
-        backgroundColor: Color(0xFF402819), // Primary color
-        titleTextStyle: TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          title,
+          style: TextStyle(
+            color: Color(0xFF125c52), // Primary color
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Color(0xFF125c52)), // Primary color
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,13 +39,16 @@ class PrescriptionDetailsScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF402819), // Primary color
+                color: Color(0xFF125c52), // Primary color
               ),
             ),
             SizedBox(height: 8),
             Text(
               "Data: $date",
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF676664), // Neutral color
+              ),
             ),
             Divider(height: 32, thickness: 1, color: Colors.grey.shade300),
 
@@ -50,42 +58,107 @@ class PrescriptionDetailsScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF402819), // Primary color
+                color: Color(0xFF125c52), // Primary color
               ),
             ),
             SizedBox(height: 8),
             Text(
               details,
-              style: TextStyle(fontSize: 16, color: Colors.black87),
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF676664), // Neutral color
+              ),
             ),
             Divider(height: 32, thickness: 1, color: Colors.grey.shade300),
 
-            // Example Prescription Items
+            // Prescription Items Section
             Text(
               "Itens da Prescrição:",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF402819), // Primary color
+                color: Color(0xFF125c52), // Primary color
               ),
             ),
             SizedBox(height: 8),
-            ListTile(
-              leading: Icon(Icons.medical_services, color: Color(0xFF402819)),
-              title: Text("Vitamina D - 5000 UI"),
-              subtitle: Text("Tomar 1 cápsula ao dia após o café da manhã."),
+            _buildPrescriptionItem(
+              icon: Icons.medical_services,
+              title: "Vitamina D - 5000 UI",
+              subtitle: "Tomar 1 cápsula ao dia após o café da manhã.",
             ),
-            ListTile(
-              leading: Icon(Icons.medical_services, color: Color(0xFF402819)),
-              title: Text("Ômega 3 - 1000 mg"),
-              subtitle: Text("Tomar 1 cápsula ao dia após o almoço."),
+            _buildPrescriptionItem(
+              icon: Icons.medical_services,
+              title: "Ômega 3 - 1000 mg",
+              subtitle: "Tomar 1 cápsula ao dia após o almoço.",
             ),
-            ListTile(
-              leading: Icon(Icons.medical_services, color: Color(0xFF402819)),
-              title: Text("Multivitamínico"),
-              subtitle: Text("Tomar 1 cápsula ao dia antes de dormir."),
+            _buildPrescriptionItem(
+              icon: Icons.medical_services,
+              title: "Multivitamínico",
+              subtitle: "Tomar 1 cápsula ao dia antes de dormir.",
+            ),
+            SizedBox(height: 24),
+
+            // Action Button
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context); // Navigate back
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF125c52), // Primary color
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
+                child: Text(
+                  "Voltar",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white, // White text for contrast
+                  ),
+                ),
+              ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPrescriptionItem({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+  }) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+      elevation: 2,
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      child: ListTile(
+        leading: CircleAvatar(
+          radius: 24,
+          backgroundColor: Color(0xFFdbdad5).withOpacity(0.5), // Neutral color
+          child: Icon(
+            icon,
+            color: Color(0xFF125c52), // Primary color
+          ),
+        ),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF125c52), // Primary color
+          ),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: TextStyle(
+            fontSize: 14,
+            color: Color(0xFF676664), // Neutral color
+          ),
         ),
       ),
     );
